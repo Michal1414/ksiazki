@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".FriendsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/baner"
@@ -21,7 +21,7 @@
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Moje recenzje"
+            android:text="Znajomi"
             android:gravity="center"
             android:textAlignment="textStart"
             android:textAllCaps="false"
@@ -43,7 +43,6 @@
             tools:srcCompat="@drawable/ic_launcher_foreground" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
@@ -54,13 +53,11 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myBooksList"
+            android:id="@+id/myFriendsList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:itemCount="5" />
     </FrameLayout>
-
-
 
     <LinearLayout
         android:id="@+id/nav"
@@ -113,5 +110,4 @@
             android:textSize="13sp"
             android:text="settings" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

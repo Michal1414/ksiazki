@@ -1,5 +1,6 @@
 package com.example.books
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupReview()
+        val friendsButton: Button = findViewById<Button>(R.id.friendsButton)
+
+        friendsButton.setOnClickListener {
+            val intent = Intent(this, FriendsActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+
 
     private fun setupReview() {
         val recyclerView = findViewById<RecyclerView>(R.id.myBooksList)

@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Books"
         tools:targetApi="31">
         <activity
+            android:name=".FriendsReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FriendsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReviewActivity"
             android:exported="false" />
         <activity
