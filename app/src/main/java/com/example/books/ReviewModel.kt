@@ -5,5 +5,6 @@ data class ReviewModel(
     val date: String,
     val title: String,
     val description: String,
-    val bookCover: Int
+    val bookCover: Int,
+    val rating: Int
 )

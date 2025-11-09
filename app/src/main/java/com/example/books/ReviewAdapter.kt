@@ -33,7 +33,6 @@ class ReviewAdapter(private val reviewList: List<ReviewModel>) :
         holder.userName.text = item.userName
         holder.date.text = item.date
 
-        // Add click listener to the whole item
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, ReviewActivity::class.java)
@@ -43,6 +42,7 @@ class ReviewAdapter(private val reviewList: List<ReviewModel>) :
             intent.putExtra("description", item.description)
             intent.putExtra("userName", item.userName)
             intent.putExtra("date", item.date)
+            intent.putExtra("rating", item.rating)
 
             context.startActivity(intent)
         }

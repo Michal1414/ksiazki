@@ -5,6 +5,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +28,8 @@ class MainActivity : AppCompatActivity() {
                         date = "2025-11-${(1..30).random()}",
                         title = "Książka nr $i",
                         description = "To przykładowa recenzja książki numer $i. Bardzo ciekawa pozycja, polecam!",
-                        bookCover = android.R.drawable.ic_menu_gallery
+                        bookCover = android.R.drawable.ic_menu_gallery,
+                        rating = Random.nextInt(0, 6)
                     )
                 )
             }
