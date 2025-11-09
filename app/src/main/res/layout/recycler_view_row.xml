@@ -27,7 +27,7 @@
             android:layout_marginStart="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
+            app:srcCompat="@drawable/bookcover" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -84,7 +84,7 @@
             app:layout_constraintBottom_toTopOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_report_image" />
+            app:srcCompat="@drawable/usericon" />
 
         <ImageView
             android:id="@+id/star1Img"
