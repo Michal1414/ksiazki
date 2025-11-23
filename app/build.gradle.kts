@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -34,7 +35,6 @@ android {
         jvmTarget = "1.8"
     }
 }
-
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -44,6 +44,23 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.cardview)
+
+    // -------------------------------
+    // 🔥 Added for OpenLibrary support
+    // -------------------------------
+
+    // Ktor HTTP client (Android engine)
+    implementation("io.ktor:ktor-client-android:2.3.5")
+
+    // Ktor JSON support
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.5")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.5")
+
+    // Kotlinx JSON library
+//    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:2.3.5")
+
+    // -------------------------------
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

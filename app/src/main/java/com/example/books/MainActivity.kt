@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +22,13 @@ class MainActivity : AppCompatActivity() {
         friendsButton.setOnClickListener {
             val intent = Intent(this, FriendsActivity::class.java)
             startActivity(intent)
+        }
+
+        lifecycleScope.launch {
+            val workKey = BookInformation.getWorkKeyFromTitle("Charlie%20and%20the%20Chocolate%20Factory")
+            println("Work key: $workKey")
+            BookInformation.getDescriptionFromWKey(workKey)
+            BookInformation.getAuthorNameFromWKey(workKey)
         }
     }
 
