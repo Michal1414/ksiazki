@@ -22,6 +22,13 @@ class FriendsActivity : AppCompatActivity() {
             insets
         }
 
+        val searchButton: Button = findViewById<Button>(R.id.searchButton)
+
+        searchButton.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
         val friendsList = listOf(

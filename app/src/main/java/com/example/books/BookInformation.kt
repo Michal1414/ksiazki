@@ -21,17 +21,31 @@ object BookInformation {
 
         val jsonObject = JSONObject(response)
 
-        // Sprawdzenie czy jest "docs" i czy są jakieś wyniki
         val docsArray = jsonObject.optJSONArray("docs")
         if (docsArray != null && docsArray.length() > 0) {
             val firstDoc = docsArray.getJSONObject(0)
-            val key = firstDoc.optString("key", null) // bezpieczne pobranie
+            val key = firstDoc.optString("key", null)
             println("Klucz: $key")
             return@withContext key
         }
 
-        return@withContext null // brak wyników
+        return@withContext null
     }
+
+    suspend fun getTitleFromWKey(wKey: String?): String? = withContext(Dispatchers.IO) {
+        if (wKey == null) return@withContext null
+
+        val url = "https://openlibrary.org/$wKey.json"
+        val body: String = client.get(url).body()
+
+        val jsonObject = JSONObject(body)
+
+        val title = jsonObject.optString("title", null)
+
+        println(title)
+        return@withContext title
+    }
+
 
     suspend fun getDescriptionFromWKey(wKey: String?): String? = withContext(Dispatchers.IO) {
         if (wKey == null) return@withContext null
@@ -72,11 +86,33 @@ object BookInformation {
                 return@withContext authorName
             }
         }
-
         return@withContext null
     }
 
+    suspend fun getCoverUrlFromWKey(wKey: String?): String? = withContext(Dispatchers.IO) {
+        if (wKey == null) return@withContext null
 
+        try {
+            val url = "https://openlibrary.org/$wKey.json"
+            val body: String = client.get(url).body()
+            val jsonObject = JSONObject(body)
 
+            val coversArray = jsonObject.optJSONArray("covers")
+            if (coversArray != null && coversArray.length() > 0) {
+                for (i in 0 until coversArray.length()) {
+                    val coverId = coversArray.optInt(i, -1)
+                    if (coverId > 0) {
+                        val coverUrl = "https://covers.openlibrary.org/b/id/$coverId-M.jpg"
+                        println("Cover URL: $coverUrl")
+                        return@withContext coverUrl
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return@withContext null
+    }
 
 }

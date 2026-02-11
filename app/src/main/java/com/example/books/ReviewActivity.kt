@@ -43,7 +43,6 @@ class ReviewActivity : AppCompatActivity() {
             rating = bundle.getInt("rating", 0)
         }
 
-        // go back to mainActivity
         val backBtn = findViewById<ImageButton>(R.id.arrowBackBtn)
 
         backBtn.setOnClickListener {
@@ -52,7 +51,6 @@ class ReviewActivity : AppCompatActivity() {
         }
 
 
-        // initialize stars AFTER setContentView
         star1 = findViewById(R.id.starButton1)
         star2 = findViewById(R.id.starButton2)
         star3 = findViewById(R.id.starButton3)

@@ -24,12 +24,21 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+        val searchButton: Button = findViewById<Button>(R.id.searchButton)
+
+        searchButton.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
         lifecycleScope.launch {
-            val workKey = BookInformation.getWorkKeyFromTitle("Charlie%20and%20the%20Chocolate%20Factory")
+            val workKey = BookInformation.getWorkKeyFromTitle("the%20bad")
             println("Work key: $workKey")
             BookInformation.getDescriptionFromWKey(workKey)
             BookInformation.getAuthorNameFromWKey(workKey)
         }
+
     }
 
 

@@ -104,14 +104,14 @@
             android:text="Button" />
 
         <Button
-            android:id="@+id/settingsButton"
+            android:id="@+id/searchButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/transparent"
             android:textColor="@color/black"
             android:textSize="13sp"
-            android:text="settings" />
+            android:text="szukaj" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
