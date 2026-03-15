@@ -25,14 +25,7 @@ class SearchActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-
-//
-//        friendsButton.setOnClickListener {
-//            val intent = Intent(this, FriendsActivity::class.java)
-//            startActivity(intent)
-//        }
-
+        
 
         val myBooksBtn: Button = findViewById<Button>(R.id.myBooksButton)
 
