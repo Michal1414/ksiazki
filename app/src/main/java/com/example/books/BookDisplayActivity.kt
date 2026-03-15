@@ -3,6 +3,7 @@ package com.example.books
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -33,7 +34,16 @@ class BookDisplayActivity : AppCompatActivity() {
         }
 
 
+
+
         val workKey = intent.getStringExtra("WORK_KEY")
+
+        val rateButton = findViewById<Button>(R.id.rateButton)
+        rateButton.setOnClickListener {
+            val intent = Intent(this, ReviewActivity::class.java)
+            intent.putExtra("WORK_KEY", workKey)
+            startActivity(intent)
+        }
 
         val cover: ImageView = findViewById<ImageView>(R.id.coverImage)
         val titleText: TextView = findViewById<TextView>(R.id.TitleText)

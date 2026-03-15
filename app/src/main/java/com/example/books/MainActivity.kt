@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,12 +16,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupReview()
-        val friendsButton: Button = findViewById<Button>(R.id.friendsButton)
 
-        friendsButton.setOnClickListener {
-            val intent = Intent(this, FriendsActivity::class.java)
-            startActivity(intent)
+        val reviews = ReviewRepository.reviews
+        for (review in reviews) {
+            println(review.reviewText)
+            println(review.rating)
         }
+
+//        friendsButton.setOnClickListener {
+//            val intent = Intent(this, FriendsActivity::class.java)
+//            startActivity(intent)
+//        }
 
 
         val searchButton: Button = findViewById<Button>(R.id.searchButton)
@@ -32,36 +36,45 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        lifecycleScope.launch {
-            val workKey = BookInformation.getWorkKeyFromTitle("the%20bad")
-            println("Work key: $workKey")
-            BookInformation.getDescriptionFromWKey(workKey)
-            BookInformation.getAuthorNameFromWKey(workKey)
-        }
+
+//
+//        lifecycleScope.launch {
+//            val workKey = BookInformation.getWorkKeyFromTitle("the%20bad")
+//            println("Work key: $workKey")
+//            BookInformation.getDescriptionFromWKey(workKey)
+//            BookInformation.getAuthorNameFromWKey(workKey)
+//        }
 
     }
 
-
-
     private fun setupReview() {
+
         val recyclerView = findViewById<RecyclerView>(R.id.myBooksList)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val reviewList = ArrayList<ReviewModel>().apply {
-            repeat(10) { i ->
-                add(
+        val reviewList = ArrayList<ReviewModel>()
+        val reviews = ReviewRepository.reviews
+
+        lifecycleScope.launch {
+
+            for (review in reviews) {
+
+                val title = BookInformation.getTitleFromWKey(review.workKey).toString()
+                val bookCover = BookInformation.getCoverUrlFromWKey(review.workKey)
+
+                reviewList.add(
                     ReviewModel(
-                        userName = "Użytkownik $i",
-                        date = "2025-11-${(1..30).random()}",
-                        title = "Książka nr $i",
-                        description = "To przykładowa recenzja książki numer $i. Bardzo ciekawa pozycja, polecam!",
-                        bookCover = android.R.drawable.ic_menu_gallery,
-                        rating = Random.nextInt(0, 6)
+                        workKey = review.workKey,
+                        userName = "Twoja ocena",
+                        title = title,
+                        description = review.reviewText,
+                        bookCover = bookCover,
+                        rating = review.rating
                     )
                 )
             }
-        }
 
-        recyclerView.adapter = ReviewAdapter(reviewList)
+            recyclerView.adapter = ReviewAdapter(reviewList)
+        }
     }
 }

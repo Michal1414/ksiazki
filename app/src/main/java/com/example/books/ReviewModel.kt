@@ -1,10 +1,10 @@
 package com.example.books
 
 data class ReviewModel(
+    val workKey: String,
     val userName: String,
-    val date: String,
     val title: String,
-    val description: String,
-    val bookCover: Int,
-    val rating: Int
+    var description: String,
+    val bookCover: String?,
+    var rating: Int
 )
